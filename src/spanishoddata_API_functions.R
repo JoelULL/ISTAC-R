@@ -37,6 +37,13 @@ close_deleted_duckdb_processes <- function() {
   }
 }
 
+#creating temporary directory to store data for each user
+create_temp_dir <- function() {
+  temp_dir <- file.path(tempdir(), paste0("od_data_",Sys.getpid()))
+  dir.create(temp_dir, showWarnings = FALSE, recursive = TRUE)
+  return(temp_dir)
+}
+
 
 #download data from start date to end date: od--> origen-destino 
 download_data_province_code_origin_destination <- function(type, zones, start_date, end_date, 
@@ -45,6 +52,13 @@ download_data_province_code_origin_destination <- function(type, zones, start_da
   ##(o especificar una variable aqui con los dos códigos)
   close_deleted_duckdb_processes()
   tryCatch({
+    #province_ine_codes <- c("38", "35") #si se quiere hacer como constante
+    
+    temp_dir <- create_temp_dir()
+    print(temp_dir)
+    spod_set_data_dir(temp_dir)
+    db_path <- file.path(temp_dir, "raw_data.duckdb")
+    
     dates =c(start = start_date, end = end_date)
     
     db <- spod_convert(
@@ -63,13 +77,34 @@ download_data_province_code_origin_destination <- function(type, zones, start_da
     ##debug
     #selected_places %>% print(n = 100)
     ##end-debug
+    # final_db_path <- file.path("data","filtered_data.duckdb")
+    # dir.create("data", showWarnings = FALSE, recursive = TRUE)
+    # Definir el directorio donde guardar la base de datos final
+    final_db_path <- "data/filtered_data.duckdb"
+
+    # Crear conexión a la base de datos final
+    con <- DBI::dbConnect(duckdb::duckdb(), dbdir = final_db_path)
+
+      # Escribir los datos filtrados en la base de datos
+    DBI::dbWriteTable(con, "filtered_table", filtered_data, overwrite = TRUE)
+    
+    # # Verificar el contenido de la tabla
+    # filtered_data_check <- DBI::dbReadTable(con, "filtered_table")
+    # print(head(filtered_data_check))  # Ver las primeras filas de la tabla
+
+      # Cerrar la conexión
+    DBI::dbDisconnect(con)
+
+    print("Base de datos guardada en data/filtered_data.duckdb")
+    
+    
     spod_disconnect(data_db)
    
     #Eliminar la fuente principal de datos para liberar memoria
     gc()
-    unlink("~/spanish_od_data/", recursive = TRUE)
+    unlink(temp_dir, recursive = TRUE)
     
-    return(filtered_data)
+    return(list(status = "success", db_path = final_db_path))
     
     #se debe eliminar los datos de los que se parten para liberar espacio de disco, una vez se ha obtenido los datos pedidos
 
@@ -179,6 +214,7 @@ download_data_id_overnight_stay_trips_per_person <- function(type, zones, start_
 ine_codes <- c("38","35")
 show_od_data <- download_data_province_code_origin_destination("od","muni","2022-01-01","2022-01-02", ine_codes)
 show_od_data #si el archivo de almacenado de datos se elimina hay que ver donde se almacena esto
+print("debug")
 #os data per id_residence
 ids_r <- c("01001")
 download_data_id_residence_overnight_stays("os","muni","2022-01-01","2022-01-02", ids_r)
