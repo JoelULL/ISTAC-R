@@ -5,7 +5,7 @@
 #
 #(Añadir descripción de estos test)
 
-source("R/clean_duckdb_tmp_files.R")
+#source("R/clean_duckdb_tmp_files.R")
 
 test_that("clean_duckdb_tmp_files elimina archivos coincidentes", {
   tmp_file1 <- tempfile(pattern = "duckdb_test1", tmpdir = "/tmp")

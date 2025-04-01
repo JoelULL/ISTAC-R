@@ -3,7 +3,7 @@
 #
 #
 #(Añadir descripcion)
-source("R/close_deleted_duckdb_processes.R")
+#source("R/close_deleted_duckdb_processes.R")
 
 test_that("close_deleted_duckdb_processes detecta y maneja procesos huérfanos", {
   

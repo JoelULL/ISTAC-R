@@ -5,7 +5,7 @@
 #
 #(Añadir descripción de estos test)
 
-source("R/create_temp_dir.R")
+#source("R/create_temp_dir.R")
 
 test_that("create_temp_dir crea un directorio temporal válido", {
 
