@@ -32,7 +32,6 @@ download_data_filtered <- function(
     
     dates <- c(start = start_date, end = end_date)
     
-    # Convertir y descargar datos según el tipo especificado
     db <- spod_convert(
       type = type,
       zones = zones,
@@ -42,7 +41,6 @@ download_data_filtered <- function(
     
     data_db <- spod_connect(db)
     
-    # Filtrado según el tipo especificado usando switch
     selected_places <- switch(type,
       "od" = {
         data_db %>% filter(residence_province_ine_code %in% param_codes ) 
@@ -67,17 +65,15 @@ download_data_filtered <- function(
       }
     )
     
-    # Recoger los datos filtrados
     filtered_data <- collect(selected_places)
     
-    # Definir el path final para la base de datos filtrada
     final_db_path <- "data/filtered_data.duckdb"
     
-    # Conectar a la base de datos final y escribir la tabla filtrada
+    
     con <- DBI::dbConnect(duckdb::duckdb(), dbdir = final_db_path)
     DBI::dbWriteTable(con, "filtered_table", filtered_data, overwrite = TRUE)
     
-    # Debug: mostrar algunas filas de la tabla resultante
+    # Debug
     filtered_data_check <- DBI::dbReadTable(con, "filtered_table")
     print(head(filtered_data_check))
     #  on.exit({
@@ -89,7 +85,7 @@ download_data_filtered <- function(
     
     print("Base de datos guardada en data/filtered_data.duckdb")
     
-    # Desconectar la base de datos origen y liberar recursos
+    
     on.exit({
       try(spod_disconnect(data_db), silent = TRUE)
       try(gc(), silent = TRUE)
