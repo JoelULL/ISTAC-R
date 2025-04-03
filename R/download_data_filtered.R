@@ -67,7 +67,10 @@ download_data_filtered <- function(
     
     filtered_data <- collect(selected_places)
     
-    final_db_path <- "data/filtered_data.duckdb"
+    # final_db_path <- "data/filtered_data.duckdb"
+    user_id <- Sys.info()["user"]
+    unique_id <- UUIDgenerate()
+    final_db_path <- paste0("data/", user_id, "_", unique_id, "_filtered_data.duckdb")
     
     
     con <- DBI::dbConnect(duckdb::duckdb(), dbdir = final_db_path)
