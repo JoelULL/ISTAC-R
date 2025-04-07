@@ -116,7 +116,7 @@ download_data_filtered <- function(
 
 #in-code test
 codes <- c("38", "35")
-show_data <- download_data_filtered("muni", "2022-01-01", "2022-01-02", "od", codes)
+show_data <- download_data_filtered("muni", "2022-01-01", "2022-01-01", "od", codes)
 show_data
 
 ids <- c("01001")
