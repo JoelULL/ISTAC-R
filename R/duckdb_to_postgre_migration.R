@@ -56,3 +56,47 @@ con <- dbConnect(
 
 dbListTables(con)
 dbDisconnect(con)
+
+
+#check if .duckdb has data
+
+con_duck <- dbConnect(duckdb(), dbdir = "data/data_test.duckdb")
+dbListTables(con_duck)         
+
+dbReadTable(con_duck, dbListTables(con_duck)[1])
+dbDisconnect(con_duck)
+
+## how many tables .duckdbfile has
+con <- dbConnect(duckdb::duckdb(), dbdir = "data/data_test.duckdb")
+
+tables <- dbListTables(con)
+
+cat("El archivo contiene", length(tables), "tabla(s).\n")
+
+print(tables)
+
+dbDisconnect(con)
+
+##in-code test
+duckdb_to_postgre_migration(
+  duckdb_file_path = "data/data_test.duckdb",
+  pg_dbname = "duckdb_migracion",
+  pg_host = "localhost",
+  pg_port = 5432,
+  pg_user = "rusuario",
+  pg_password = "rpass"
+)
+
+con <- dbConnect(
+  RPostgres::Postgres(),
+  dbname = "duckdb_migracion",
+  host = "localhost",
+  port = 5432,
+  user = "rusuario",
+  password = "rpass"
+)
+
+dbListTables(con)
+data <- dbReadTable(con, "filtered_table")
+print(head(data)) 
+dbDisconnect(con)
