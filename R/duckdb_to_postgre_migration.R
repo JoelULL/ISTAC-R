@@ -1,4 +1,14 @@
-# This function migrates a duckdb table to PostgreSQL 
+#' This function migrates a duckdb table to PostgreSQL
+#' @description
+#' Migrates all DuckDB tables to PostgreSQL 
+#' via full-table overwrites. 
+#' @param duckdb_file_path filtered data duckdb file
+#' @param pg_dbname postgre data base name
+#' @param pg_host postgre database host
+#' @param pg_port postgre database port
+#' @param pg_user postgre database user
+#' @param pg_password postgre database password
+
 duckdb_to_postgre_migration <- function(duckdb_file_path,
                                         pg_dbname,
                                         pg_host,
@@ -39,59 +49,59 @@ duckdb_to_postgre_migration <- function(duckdb_file_path,
   print("Migration success")
 }
 
-#verification
-con <- dbConnect(
-  RPostgres::Postgres(),
-  dbname = "duckdb_migracion",
-  host = "localhost",
-  port = 5432,
-  user = "rusuario",
-  password = "rpass"
-)
+# #verification
+# con <- dbConnect(
+#   RPostgres::Postgres(),
+#   dbname = "duckdb_migracion",
+#   host = "localhost",
+#   port = 5432,
+#   user = "rusuario",
+#   password = "rpass"
+# )
 
-dbListTables(con)
-dbDisconnect(con)
+# dbListTables(con)
+# dbDisconnect(con)
 
 
-#check if .duckdb has data
+# #check if .duckdb has data
 
-con_duck <- dbConnect(duckdb(), dbdir = "data/data_test.duckdb")
-dbListTables(con_duck)         
+# con_duck <- dbConnect(duckdb(), dbdir = "data/data_test.duckdb")
+# dbListTables(con_duck)         
 
-dbReadTable(con_duck, dbListTables(con_duck)[1])
-dbDisconnect(con_duck)
+# dbReadTable(con_duck, dbListTables(con_duck)[1])
+# dbDisconnect(con_duck)
 
-## how many tables .duckdbfile has
-con <- dbConnect(duckdb::duckdb(), dbdir = "data/data_test.duckdb")
+# ## how many tables .duckdbfile has
+# con <- dbConnect(duckdb::duckdb(), dbdir = "data/data_test.duckdb")
 
-tables <- dbListTables(con)
+# tables <- dbListTables(con)
 
-cat("El archivo contiene", length(tables), "tabla(s).\n")
+# cat("El archivo contiene", length(tables), "tabla(s).\n")
 
-print(tables)
+# print(tables)
 
-dbDisconnect(con)
+# dbDisconnect(con)
 
-##in-code test
-duckdb_to_postgre_migration(
-  duckdb_file_path = "data/data_test.duckdb",
-  pg_dbname = "duckdb_migracion",
-  pg_host = "localhost",
-  pg_port = 5432,
-  pg_user = "rusuario",
-  pg_password = "rpass"
-)
+# ##in-code test
+# duckdb_to_postgre_migration(
+#   duckdb_file_path = "data/data_test.duckdb",
+#   pg_dbname = "duckdb_migracion",
+#   pg_host = "localhost",
+#   pg_port = 5432,
+#   pg_user = "rusuario",
+#   pg_password = "rpass"
+# )
 
-con <- dbConnect(
-  RPostgres::Postgres(),
-  dbname = "duckdb_migracion",
-  host = "localhost",
-  port = 5432,
-  user = "rusuario",
-  password = "rpass"
-)
+# con <- dbConnect(
+#   RPostgres::Postgres(),
+#   dbname = "duckdb_migracion",
+#   host = "localhost",
+#   port = 5432,
+#   user = "rusuario",
+#   password = "rpass"
+# )
 
-dbListTables(con)
-data <- dbReadTable(con, "filtered_table")
-print(head(data)) 
-dbDisconnect(con)
+# dbListTables(con)
+# data <- dbReadTable(con, "filtered_table")
+# print(head(data)) 
+# dbDisconnect(con)
