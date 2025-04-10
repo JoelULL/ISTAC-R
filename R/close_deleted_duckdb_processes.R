@@ -1,18 +1,15 @@
-#close deleted duckdb processes
-#
-#
-#
-#
-# (complete description here)
+#' Close deleted duckdb processes
+
+#' @description
+#' This function deletes duckdb procesess that could still open when the program
+#' is close in the middle of a duckdb convertion process, 
+#' those that are marked as (deleted). 
+#' Prevents bugs with the convertion of new tables.
 close_deleted_duckdb_processes <- function() {
-  # if (Sys.info()["sysname"] == "Windows") {
-  #   # En Windows se maneja de forma diferente
-  #   return(invisible(NULL))
-  # }
   tryCatch({
     lsof_output <- system("lsof | grep duckdb | grep '(deleted)'", intern = TRUE)
     if (length(lsof_output) > 0) {
-      message("Detectados ", length(lsof_output), " procesos DuckDB huérfanos. Intentando liberar recursos...")
+      message("Detected ", length(lsof_output), " deleted duckdb processes. releasing resources...")
       gc(full = TRUE, verbose = FALSE)
       return(TRUE)
     }

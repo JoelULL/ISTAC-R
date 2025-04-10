@@ -1,8 +1,6 @@
-# creating temporary directory to store data for each user
-#
-#
-#
-# (complete description here)
+#' @description
+#' This function creates a temporary directory to store the downloaded 
+#' unfiltered data for each user
 create_temp_dir <- function() {
   temp_dir <- file.path(tempdir(), paste0("od_data_", Sys.getpid()))
   dir.create(temp_dir, showWarnings = FALSE, recursive = TRUE)

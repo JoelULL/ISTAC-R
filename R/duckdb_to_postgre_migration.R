@@ -1,8 +1,3 @@
-#
-#
-#
-#
-#
 # This function migrates a duckdb table to PostgreSQL 
 duckdb_to_postgre_migration <- function(duckdb_file_path,
                                         pg_dbname,
