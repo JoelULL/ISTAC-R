@@ -3,3 +3,5 @@ spanishoddata/
 .gitignore
 data/
 experiments/
+.devcontainer
+.vscode
