@@ -1,3 +1,11 @@
+#' API endpoints file
+#' @description
+#' This file includes the endpoints developed for the API.
+#' It use the plumber package. More info:
+#' https://www.rplumber.io/
+#' https://cran.r-project.org/web/packages/plumber/index.html
+
+
 # api.R
 #* @apiTitle Data Filtering API
 #* @apiDescription Data Filtering API using DuckDB
