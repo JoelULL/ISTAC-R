@@ -11,7 +11,7 @@
 
 test_that("close_deleted_duckdb_processes detects and handles orphaned processes", {
   
-  # Mockear system para devolver procesos huérfanos simulados
+  # Mock system to return mock orphaned processes
   mock_system <- mock(c("duckdb (deleted)", "duckdb (deleted)"))
   stub(close_deleted_duckdb_processes, "system", mock_system)
   result <- close_deleted_duckdb_processes()
