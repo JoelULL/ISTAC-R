@@ -1,13 +1,14 @@
-#
-#
-#
-#
-#
-#(Añadir descripción de estos test)
+#' test file for create_temp_dir
+#' @seealso [create_temp_dir]
+#' @description 
+#' This test files covers the main functionality of this function.
+#' The test are self-explanatory with a description.
+#' The library used for testing is Testthat. See more:
+#' https://testthat.r-lib.org/
+#' https://cran.r-project.org/web/packages/testthat/index.html
 
-#source("R/create_temp_dir.R")
 
-test_that("create_temp_dir crea un directorio temporal válido", {
+test_that("create_temp_dir creates a valid temporary directory", {
 
   temp_dir <- create_temp_dir()
 
@@ -24,7 +25,7 @@ test_that("create_temp_dir crea un directorio temporal válido", {
   unlink(temp_dir, recursive = TRUE)
 })
 
-test_that("create_temp_dir crea un directorio en la ubicación correcta", {
+test_that("create_temp_dir creates a directory in the correct location", {
   
   temp_dir <- create_temp_dir()
   expect_true(startsWith(temp_dir, tempdir()))

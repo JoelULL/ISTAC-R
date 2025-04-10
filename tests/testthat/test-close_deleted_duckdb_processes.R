@@ -1,11 +1,15 @@
-#
-#
-#
-#
-#(Añadir descripcion)
-#source("R/close_deleted_duckdb_processes.R")
+#' test file for close_deleted_duckdb_processes
+#' @seealso [close_deleted_duckdb_processes]
+#' @description 
+#' This test files covers the main functionality of this function.
+#' The test are self-explanatory with a description.
+#' The library used for testing is Testthat. See more:
+#' https://testthat.r-lib.org/
+#' https://cran.r-project.org/web/packages/testthat/index.html
+#' This test also use the mockery strategy using the library mockery. See more:
+#' https://cran.r-project.org/web/packages/mockery/index.html
 
-test_that("close_deleted_duckdb_processes detecta y maneja procesos huérfanos", {
+test_that("close_deleted_duckdb_processes detects and handles orphaned processes", {
   
   # Mockear system para devolver procesos huérfanos simulados
   mock_system <- mock(c("duckdb (deleted)", "duckdb (deleted)"))
@@ -15,7 +19,7 @@ test_that("close_deleted_duckdb_processes detecta y maneja procesos huérfanos",
   expect_called(mock_system, 1)
 })
 
-test_that("close_deleted_duckdb_processes no detecta procesos huérfanos", {
+test_that("close_deleted_duckdb_processes does not detect orphaned processes", {
     
   mock_system <- mock(character(0))
   stub(close_deleted_duckdb_processes, "system", mock_system)

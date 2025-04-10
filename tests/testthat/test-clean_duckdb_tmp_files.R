@@ -1,13 +1,13 @@
-#
-#
-#
-#
-#
-#(Añadir descripción de estos test)
+#' test file for clean_duckdb_tmp_files
+#' @seealso [clean_duckdb_tmp_files]
+#' @description 
+#' This test files covers the main functionality of this function.
+#' The test are self-explanatory with a description.
+#' The library used for testing is Testthat. See more:
+#' https://testthat.r-lib.org/
+#' https://cran.r-project.org/web/packages/testthat/index.html
 
-#source("R/clean_duckdb_tmp_files.R")
-
-test_that("clean_duckdb_tmp_files elimina archivos coincidentes", {
+test_that("clean_duckdb_tmp_files deletes matching files", {
   tmp_file1 <- tempfile(pattern = "duckdb_test1", tmpdir = "/tmp")
   tmp_file2 <- tempfile(pattern = "duckdb_test2", tmpdir = "/tmp")
   file.create(tmp_file1)
@@ -22,8 +22,7 @@ test_that("clean_duckdb_tmp_files elimina archivos coincidentes", {
   expect_false(file.exists(tmp_file2))
 })
 
-
-test_that("clean_duckdb_tmp_files no elimina archivos no coincidentes", {
+test_that("clean_duckdb_tmp_files does not delete unmatched files", {
 
   non_matching_file <- tempfile(pattern = "otherfile_", tmpdir = "/tmp")
   file.create(non_matching_file)
@@ -37,13 +36,12 @@ test_that("clean_duckdb_tmp_files no elimina archivos no coincidentes", {
   unlink(non_matching_file)
 })
 
-test_that("clean_duckdb_tmp_files maneja correctamente la ausencia de archivos", {
+test_that("clean_duckdb_tmp_files correctly handles missing files", {
 
   matching_files <- list.files(path = "/tmp", pattern = "duckdb", full.names = TRUE, recursive = TRUE)
   if (length(matching_files) > 0) {
     unlink(matching_files)
   }
-  
   expect_no_error(clean_duckdb_tmp_files())
 })
 

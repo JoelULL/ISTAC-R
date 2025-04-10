@@ -1,6 +1,12 @@
-#source("R/download_data_filtered.R")
-
-test_that("download_data_filtered lanza un error para tipos no reconocidos", {
+#' test file for download_data_filtered
+#' @seealso [download_data_filtered]
+#' @description 
+#' This test files covers the main functionality of this function.
+#' The test are self-explanatory with a description.
+#' The library used for testing is Testthat. See more:
+#' https://testthat.r-lib.org/
+#' https://cran.r-project.org/web/packages/testthat/index.html
+test_that("download_data_filtered throws an error for unrecognized types", {
   codes <- c("38", "35")
   
   #lsof warnings excluded for testing
