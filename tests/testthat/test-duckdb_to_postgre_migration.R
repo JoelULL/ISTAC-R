@@ -1,5 +1,14 @@
+#' test file for duckdb_to_postgre_migration
+#' @seealso [duckdb_to_postgre_migration]
+#' @description 
+#' This test files covers the main functionality of this function.
+#' The test are self-explanatory with a description.
+#' The library used for testing is Testthat. See more:
+#' https://testthat.r-lib.org/
+#' https://cran.r-project.org/web/packages/testthat/index.html
 
 
+# test data base parameters
 pg_dbname <- "duckdb_migracion_test"
 pg_host <- "localhost"
 pg_port <- 5432
