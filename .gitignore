@@ -5,3 +5,4 @@ data/
 experiments/
 .devcontainer
 .vscode
+json_files/
