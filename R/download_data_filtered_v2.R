@@ -18,8 +18,6 @@
 #'  More info: https://ropenspain.github.io/spanishoddata/index.html 
 #' @param param_codes list of parameters to filter 
 #'  (e.g. province codes or IDs of other locations.)
-#' @param os_option For "os": allows you to choose the filtering.
-#'  It can be: "residences" or "overnight_stays".
 #' @param max_download_size spanishoddata parameter.
 #'  The maximum download size in gigabytes. Defaults to 1.
 #' @return If success: a list with the status = "success", 
@@ -33,8 +31,8 @@ download_data_filtered_v2 <- function(
     os_option = NULL,
     max_download_size = 1) {
       
-  checkmate::assertChoice(type, choices = c("od", "os", "nt"), null.ok = FALSE)
-
+  #checkmate::assertChoice(type, choices = c("od", "os", "nt"), null.ok = FALSE)
+  
   close_orphan_duckdb_process()
 
   tryCatch(
