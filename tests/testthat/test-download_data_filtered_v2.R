@@ -1,4 +1,13 @@
-test_that("download_data_filtered_v2 filtra con OR correctamente", {
+#' test file for download_data_filtered_v2
+#' @seealso [download_data_filtered_v2]
+#' @description 
+#' This test files covers the main functionality of this function.
+#' The test are self-explanatory with a description.
+#' The library used for testing is Testthat. See more:
+#' https://testthat.r-lib.org/
+#' https://cran.r-project.org/web/packages/testthat/index.html
+
+test_that("download_data_filtered_v2 filtra with OR correctly", {
 
   mock_df <- tibble::tibble(
     id_origin = c("01059", "99999", "02003", "88888"),
