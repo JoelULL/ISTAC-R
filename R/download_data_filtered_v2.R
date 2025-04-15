@@ -1,3 +1,31 @@
+#' This function allows parameterized downloads of the data.
+#' 
+#' @description 
+#' It use the spanishoddata library, to download and convert to DuckDB the files.
+#' Then the parameters are used to filter the database, obtaining only the 
+#' desired data in a duckdb file.
+#' The directory where the data files are downloaded is unique for each user and
+#' this directory is deleted at the end.
+#' The resulting duckdb file is saved with a unique file name for each convertion.
+#' @param zones spanishoddata parameter. The zones for which to download the data: 
+#'  "districts", "dist", "distr", "distritos", "municipalities", "muni", "municip", 
+#'  "municipios", "lua", "large_urban_areas", "gau", "grandes_areas_urbanas"
+#' @param start_date Start date of the data. Use the format "YYYY-MM-DD"
+#' @param end_date End date of the data. Use the same format as the start date
+#' @param type spanishoddata parameter. The type of data to download. Can be: 
+#'  "od" "os", "nt".
+#'  os and overnight_stays is only for the v2 data. 
+#'  More info: https://ropenspain.github.io/spanishoddata/index.html 
+#' @param param_codes list of parameters to filter 
+#'  (e.g. province codes or IDs of other locations.)
+#' @param os_option For "os": allows you to choose the filtering.
+#'  It can be: "residences" or "overnight_stays".
+#' @param max_download_size spanishoddata parameter.
+#'  The maximum download size in gigabytes. Defaults to 1.
+#' @return If success: a list with the status = "success", 
+#'  and the final db filtered file path
+#' @return If error: a list with the status = "error" and the error message. 
+
 download_data_filtered_v2 <- function(
     zones, start_date, end_date,
     type,
