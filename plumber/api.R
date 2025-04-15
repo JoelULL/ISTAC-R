@@ -30,13 +30,12 @@ function(
   # Convert param_codes JSON to vector?
   param_codes <- unlist(param_codes)
   
-  result <- download_data_filtered(
+  result <- download_data_filtered_v2(
     zones = zones,
     start_date = start_date,
     end_date = end_date,
     type = type,
-    param_codes = param_codes,
-    os_option = os_option
+    param_codes = param_codes
   )
   
   if (result$status == "success") {
