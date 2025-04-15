@@ -20,7 +20,7 @@ close_deleted_duckdb_processes <- function() {
   
   return(invisible(NULL))
 }
-close_deleted_duckdb_processes()
+# close_deleted_duckdb_processes()
 
 
 
