@@ -7,7 +7,7 @@
 #' Prevents bugs with the convertion of new tables.
 close_deleted_duckdb_processes <- function() {
   tryCatch({
-    lsof_output <- system("lsof | grep duckdb | grep '(deleted)'", intern = TRUE)
+    lsof_output <- system("lsof | grep duckdb | grep '(deleted)'", intern = TRUE, silent = TRUE)
     if (length(lsof_output) > 0) {
       message("Detected ", length(lsof_output), " deleted duckdb processes. releasing resources...")
       gc(full = TRUE, verbose = FALSE)
