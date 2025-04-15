@@ -2,6 +2,5 @@ spanishoddata/
 .env
 .gitignore
 data/
-experiments/
 .devcontainer
 .vscode
