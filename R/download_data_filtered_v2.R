@@ -100,8 +100,6 @@ download_data_filtered_v2 <- function(
         add = TRUE
       )
 
-      # print("Data base saved data/filtered_data.duckdb")
-
       on.exit(
         {
           try(spod_disconnect(data_db), silent = TRUE)
