@@ -83,7 +83,10 @@ download_data_filtered_v2 <- function(
       user_id <- Sys.info()["user"]
       unique_id <- UUIDgenerate()
       final_db_path <- paste0("data/", user_id, "_", unique_id, "_filtered_data.duckdb")
-
+      
+      #windows fix
+      dir.create(dirname(final_db_path), recursive = TRUE, showWarnings = FALSE)
+      
       con <- DBI::dbConnect(duckdb::duckdb(), dbdir = final_db_path)
       DBI::dbWriteTable(con, "filtered_table", filtered_data, overwrite = TRUE)
 
@@ -117,7 +120,7 @@ download_data_filtered_v2 <- function(
 }
 
 
-# # in-code test
+# in-code test
 # result <- download_data_filtered_v2(
 #   zones = "muni",
 #   start_date = "2022-01-01",
