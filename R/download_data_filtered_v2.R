@@ -1,28 +1,28 @@
 #' This function allows parameterized downloads of the data.
-#' 
-#' @description 
+#'
+#' @description
 #' It use the spanishoddata library, to download and convert to DuckDB the files.
-#' Then the parameters are used to filter the database, obtaining only the 
+#' Then the parameters are used to filter the database, obtaining only the
 #' desired data in a duckdb file.
 #' The directory where the data files are downloaded is unique for each user and
 #' this directory is deleted at the end.
 #' The resulting duckdb file is saved with a unique file name for each convertion.
-#' @param zones spanishoddata parameter. The zones for which to download the data: 
-#'  "districts", "dist", "distr", "distritos", "municipalities", "muni", "municip", 
+#' @param zones spanishoddata parameter. The zones for which to download the data:
+#'  "districts", "dist", "distr", "distritos", "municipalities", "muni", "municip",
 #'  "municipios", "lua", "large_urban_areas", "gau", "grandes_areas_urbanas"
 #' @param start_date Start date of the data. Use the format "YYYY-MM-DD"
 #' @param end_date End date of the data. Use the same format as the start date
-#' @param type spanishoddata parameter. The type of data to download. Can be: 
+#' @param type spanishoddata parameter. The type of data to download. Can be:
 #'  "od" "os", "nt".
-#'  os and overnight_stays is only for the v2 data. 
-#'  More info: https://ropenspain.github.io/spanishoddata/index.html 
-#' @param param_codes list of parameters to filter 
+#'  os and overnight_stays is only for the v2 data.
+#'  More info: https://ropenspain.github.io/spanishoddata/index.html
+#' @param param_codes list of parameters to filter
 #'  (e.g. province codes or IDs of other locations.)
 #' @param max_download_size spanishoddata parameter.
 #'  The maximum download size in gigabytes. Defaults to 1.
-#' @return If success: a list with the status = "success", 
+#' @return If success: a list with the status = "success",
 #'  and the final db filtered file path
-#' @return If error: a list with the status = "error" and the error message. 
+#' @return If error: a list with the status = "error" and the error message.
 
 download_data_filtered_v2 <- function(
     zones, start_date, end_date,
@@ -30,9 +30,8 @@ download_data_filtered_v2 <- function(
     param_codes,
     os_option = NULL,
     max_download_size = 1) {
-      
-  #checkmate::assertChoice(type, choices = c("od", "os", "nt"), null.ok = FALSE)
-  
+  # checkmate::assertChoice(type, choices = c("od", "os", "nt"), null.ok = FALSE)
+  print(str(param_codes))
   close_orphan_duckdb_process()
 
   tryCatch(
@@ -55,6 +54,9 @@ download_data_filtered_v2 <- function(
 
       # table column names for checking
       col_names <- colnames(data_db)
+
+      data_db <- data_db %>% as.data.frame()
+      
 
       # e.g: id_origin, id_destination
       # accepted: ([id_origin, id_destination], [id_origin, id_destination_not_listed],
@@ -83,10 +85,10 @@ download_data_filtered_v2 <- function(
       user_id <- Sys.info()["user"]
       unique_id <- UUIDgenerate()
       final_db_path <- paste0("data/", user_id, "_", unique_id, "_filtered_data.duckdb")
-      
-      #windows fix
+
+      # windows fix
       dir.create(dirname(final_db_path), recursive = TRUE, showWarnings = FALSE)
-      
+
       con <- DBI::dbConnect(duckdb::duckdb(), dbdir = final_db_path)
       DBI::dbWriteTable(con, "filtered_table", filtered_data, overwrite = TRUE)
 
@@ -118,15 +120,17 @@ download_data_filtered_v2 <- function(
 }
 
 
+
 # in-code test
-# result <- download_data_filtered_v2(
-#   zones = "muni",
-#   start_date = "2022-01-01",
-#   end_date = "2022-01-02",
-#   type = "od",
-#   param_codes = list(
-#     id_origin = c("01059", "02003", "03014"),
-#     id_destination = c("02003", "03014")
-#   )
-# )
-# result
+result <- download_data_filtered_v2(
+  zones = "muni",
+  start_date = "2022-01-01",
+  end_date = "2022-01-02",
+  type = "od",
+  param_codes = list(
+    id_origin = c("01059", "02003", "03014"),
+    id_destination = c("02003", "03014")
+  )
+)
+result
+
