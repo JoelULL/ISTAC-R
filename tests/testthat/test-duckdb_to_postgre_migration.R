@@ -6,6 +6,23 @@
 #' The library used for testing is Testthat. See more:
 #' https://testthat.r-lib.org/
 #' https://cran.r-project.org/web/packages/testthat/index.html
+#' Testing done in local database. Steps in console (Linux):
+#'  1. sudo apt install postgresql postgresql-contrib
+#'  2. sudo -i -u postgres
+#'  3. psql 
+#'  4. CREATE DATABASE duckdb_migracion_test;
+#'     CREATE USER rusuario WITH PASSWORD 'rpass';
+#'     GRANT ALL PRIVILEGES ON DATABASE duckdb_migracion_test TO rusuario;
+#'     \q
+#'  5. As root execute: sudo systemctl restart postgresql
+#' Steps Windows:
+#'  1. Download postgresql: https://www.postgresql.org/download/windows/
+#'  2. Choose port 5432
+#'  3. Open pgAdmin, connect to local server and create a new data base.
+#'  4. CREATE ROLE rusuario WITH LOGIN PASSWORD 'rpass';
+#'     GRANT ALL PRIVILEGES ON DATABASE duckdb_migracion_test TO rusuario;
+#' another option for this is install a WSL console and replicate Linux steps
+
 
 
 # test data base parameters
