@@ -27,7 +27,8 @@ required_packages <- c(
   "uuid",
   "RPostgres",
   "duckdb",
-  "jsonlite"
+  "jsonlite",
+  "here"
 )
 
 new_packages <- required_packages[!(required_packages %in% installed.packages()[, "Package"])]
