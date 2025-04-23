@@ -8,8 +8,9 @@
 #' https://cran.r-project.org/web/packages/testthat/index.html
 
 test_that("JSON file reading and param_codes converts to vectors correctly", {
-  json_file_path <- "json_files/file_test.json"
-  
+  #json_file_path <- "ISTAC-R/json_files/file_test.json"
+  json_file_path <- here("ISTAC-R", "json_files", "file_test.json")
+
   params <- fromJSON(
     json_file_path,
     simplifyVector = FALSE,  
