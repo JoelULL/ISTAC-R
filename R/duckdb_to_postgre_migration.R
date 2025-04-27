@@ -43,6 +43,8 @@ duckdb_to_postgre_migration <- function(duckdb_file_path,
 
     data <- dbReadTable(con_duckdb, table_name)
 
+    data$marcatiempo <- Sys.time()
+
     dbWriteTable(con_postgres, table_name, data, overwrite = TRUE, row.names = FALSE)
   }
 
@@ -51,12 +53,11 @@ duckdb_to_postgre_migration <- function(duckdb_file_path,
 
   print("Migration success")
 
-  # If true, deletes the duckdb file generated
   if (delete_duckdb_file) {
     file.remove(duckdb_file_path)
   }
-
 }
+
 
 # #verification
 # con <- dbConnect(
