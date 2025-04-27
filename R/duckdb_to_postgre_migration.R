@@ -43,7 +43,7 @@ duckdb_to_postgre_migration <- function(duckdb_file_path,
 
     data <- dbReadTable(con_duckdb, table_name)
 
-    data$marcatiempo <- Sys.time()
+    data$insertion_date <- Sys.time()
 
     dbWriteTable(con_postgres, table_name, data, overwrite = TRUE, row.names = FALSE)
   }
