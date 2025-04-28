@@ -22,5 +22,3 @@ test_that("json_data_download_configuration reads JSON, parses correctly, and do
   
   expect_true(file.exists(result$db_path))
 })
-
-
