@@ -52,10 +52,10 @@ download_data_filtered_v2 <- function(
       data_db <- spod_connect(db)
       #fix: convert to data frame
       data_db <- data_db %>% as.data.frame()
-      print(sapply(data_db, class))
+      #print(sapply(data_db, class))
       col_names <- colnames(data_db)
       
-
+      #fix: new filter.
       if (length(param_codes) > 0) {
         for (var_name in names(param_codes)) {
           if (!(var_name %in% col_names)) {
@@ -108,14 +108,14 @@ download_data_filtered_v2 <- function(
 }
 
 # in-code test
- # result <- download_data_filtered_v2(
- #   zones = "muni",
- #   start_date = "2022-01-01",
- #   end_date = "2022-01-02",
- #   type = "od",
- #   param_codes = list(
- #     id_origin = c("01059", "02003", "03014"),
- #     id_destination = c("02003", "03014")
- #   )
- # )
- # result
+ result <- download_data_filtered_v2(
+   zones = "muni",
+   start_date = "2022-01-01",
+   end_date = "2022-01-02",
+   type = "od",
+   param_codes = list(
+     id_origin = c("01059", "02003", "03014"),
+     id_destination = c("02003", "03014")
+   )
+ )
+ result
