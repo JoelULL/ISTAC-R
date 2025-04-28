@@ -74,7 +74,6 @@ download_data_filtered_v2 <- function(
           rlang::expr(!!rlang::sym(var_name) %in% !!values)
         })
 
-
         full_filter_expr <- Reduce(function(x, y) rlang::expr(!!x | !!y), filter_conditions)
 
         data_db <- data_db %>% filter(!!full_filter_expr)

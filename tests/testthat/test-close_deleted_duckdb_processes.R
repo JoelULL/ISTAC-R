@@ -10,7 +10,7 @@
 #' https://cran.r-project.org/web/packages/mockery/index.html
 
 test_that("close_deleted_duckdb_processes detects and handles orphaned processes", {
-  
+  skip_on_os(c("windows", "mac"))
   # Mock system to return mock orphaned processes
   mock_system <- mock(c("duckdb (deleted)", "duckdb (deleted)"))
   stub(close_deleted_duckdb_processes, "system", mock_system)
@@ -20,7 +20,7 @@ test_that("close_deleted_duckdb_processes detects and handles orphaned processes
 })
 
 test_that("close_deleted_duckdb_processes does not detect orphaned processes", {
-    
+  skip_on_os(c("windows", "mac"))
   mock_system <- mock(character(0))
   stub(close_deleted_duckdb_processes, "system", mock_system)
 

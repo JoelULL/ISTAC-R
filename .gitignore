@@ -6,3 +6,5 @@ experiments/
 .devcontainer
 .vscode
 json_files/
+.Rproj.user/
+ISTAC-R.Rproj

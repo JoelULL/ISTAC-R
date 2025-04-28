@@ -8,6 +8,7 @@
 #' https://cran.r-project.org/web/packages/testthat/index.html
 
 test_that("clean_duckdb_tmp_files deletes matching files", {
+  skip_on_os(c("windows", "mac"))
   tmp_file1 <- tempfile(pattern = "duckdb_test1", tmpdir = "/tmp")
   tmp_file2 <- tempfile(pattern = "duckdb_test2", tmpdir = "/tmp")
   file.create(tmp_file1)
@@ -23,7 +24,7 @@ test_that("clean_duckdb_tmp_files deletes matching files", {
 })
 
 test_that("clean_duckdb_tmp_files does not delete unmatched files", {
-
+  skip_on_os(c("windows", "mac"))
   non_matching_file <- tempfile(pattern = "otherfile_", tmpdir = "/tmp")
   file.create(non_matching_file)
   
@@ -37,7 +38,7 @@ test_that("clean_duckdb_tmp_files does not delete unmatched files", {
 })
 
 test_that("clean_duckdb_tmp_files correctly handles missing files", {
-
+  skip_on_os(c("windows", "mac"))
   matching_files <- list.files(path = "/tmp", pattern = "duckdb", full.names = TRUE, recursive = TRUE)
   if (length(matching_files) > 0) {
     unlink(matching_files)
