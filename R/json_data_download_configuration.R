@@ -1,7 +1,8 @@
 
 json_data_download_configuration <- function(json_file_path) {
-  params <- fromJSON(
-    json_file_path,
+  json_content <- readLines(json_file_path, warn = FALSE) |> paste(collapse = "\n")
+  params <- jsonlite::fromJSON(
+    txt = json_content, #fix: path file was deprecated
     simplifyVector = FALSE,  
     simplifyDataFrame = FALSE
   )
