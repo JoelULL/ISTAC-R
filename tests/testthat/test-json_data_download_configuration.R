@@ -12,7 +12,7 @@ test_that("JSON file reading and param_codes converts to vectors correctly", {
   json_file_path <- here("ISTAC-R", "json_files", "file_test.json")
 
   params <- fromJSON(
-    json_file_path,
+    file = json_file_path,
     simplifyVector = FALSE,  
     simplifyDataFrame = FALSE
   )
