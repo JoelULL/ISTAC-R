@@ -105,7 +105,7 @@ duckdb_to_postgre_migration <- function(duckdb_file_path,
 
 # con <- dbConnect(
 #   RPostgres::Postgres(),
-#   dbname = "duckdb_migracion",
+#   dbname = "duckdb_migracion_test",
 #   host = "localhost",
 #   port = 5432,
 #   user = "rusuario",
