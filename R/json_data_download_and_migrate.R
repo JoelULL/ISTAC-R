@@ -1,3 +1,19 @@
+#' Read JSON configuration, downloads and migrate data to Postgre data base
+#' 
+#' @description
+#' The function gets a JSON with the user configuration to download data.
+#' and the Postgre data base parameters.Then calls the download 
+#' function with the specified parameters, and the migration function to
+#' insert the new data in Postgre data base.
+#' @seealso
+#' * [download_data_filtered_v2()] to download the data using
+#'   the spanishoddata library. 
+#' * [duckdb_to-postgre_migration()] migrates duckdb tables to Postgre data base
+#' @param json_file_path JSON file with the user data download and Postgre data 
+#'   base configurations.  
+#' @example
+#' json_data_download_and_migrate("json_files/file_test_migration.json")
+
 json_data_download_and_migrate <- function(json_file_path) {
 
   json_content <- readLines(json_file_path, warn = FALSE) |> paste(collapse = "\n")
@@ -26,5 +42,5 @@ json_data_download_and_migrate <- function(json_file_path) {
     delete_duckdb_file = postgres_params$delete_duckdb_file
   )
 }
-#in-code test
+# in-code test
 # json_data_download_and_migrate("json_files/file_test_migration.json")

@@ -1,4 +1,5 @@
 #' This function migrates a duckdb table to PostgreSQL
+#' 
 #' @description
 #' Migrates all DuckDB tables to PostgreSQL
 #' via full-table overwrites.
@@ -10,6 +11,16 @@
 #' @param pg_password postgre database password
 #' @param delete_duckdb_file boolean variable. Allows user to eliminate
 #'   the DuckDB file generated.
+#' @example
+#' duckdb_to_postgre_migration(
+#'   duckdb_file_path = "data/data_test.duckdb",
+#'   pg_dbname = "duckdb_migracion",
+#'   pg_host = "localhost",
+#'   pg_port = 5432,
+#'   pg_user = "rusuario",
+#'   pg_password = "rpass",
+#'   delete_duckdb_file = TRUE
+#' ) 
 
 duckdb_to_postgre_migration <- function(duckdb_file_path,
                                         pg_dbname,
