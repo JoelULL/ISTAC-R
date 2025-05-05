@@ -28,7 +28,10 @@ required_packages <- c(
   "RPostgres",
   "duckdb",
   "jsonlite",
-  "here"
+  "here",
+  "zonebuilder",
+  "tmaptools",
+  "sf"
 )
 
 new_packages <- required_packages[!(required_packages %in% installed.packages()[, "Package"])]
