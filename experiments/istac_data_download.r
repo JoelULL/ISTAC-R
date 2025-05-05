@@ -249,11 +249,12 @@ for (island in canary_islands) {
   print(id)
 }
 
-  tenerife_zones <- zonebuilder::zb_zone("Tenerife")
+  tenerife_zones <- zonebuilder::zb_zone("omega")
   lua_tenerife <- lua_wgs84[tenerife_zones, ]
   print(lua_tenerife, n = Inf)
   id <- unique(unlist(strsplit(as.character(lua_tenerife$id), "; ")))
-  print(id)
+  if (length(id) == 0)
+    print("error")
 
 
 

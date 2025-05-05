@@ -16,6 +16,9 @@ get_ine_codes <- function(option, zones, ver) {
             ine_codes <- unique(c(ine_codes, id))
     }
 
+    if (length(ine_codes) == 0) {
+        stop("No id codes availables!\n")
+    }
     ine_codes
 }
 
