@@ -1,4 +1,4 @@
-#' This function use spansishoddata function spod_get_zones to get districts,
+#' This function use spansishoddata's function spod_get_zones to get districts,
 #' municipalities or luas codes
 #' 
 #' @description
