@@ -187,3 +187,27 @@ municip_v2
 
 distr_v1 <- spod_get_zones(zones = "districts", ver = 1)
 distr_v1
+
+
+
+#version2
+distritos <- spod_get_zones("distritos", ver = 2)
+distritos_wgs84 <- distritos |>
+  sf::st_simplify(dTolerance = 200) |>
+  sf::st_transform(4326)
+
+tenerife_zones <- zonebuilder::zb_zone("Canarias")
+distritos_tenerife <- distritos_wgs84[tenerife_zones, ]
+print(distritos_tenerife, n = Inf)
+
+
+
+# version1
+distritos_v1 <- spod_get_zones("distritos", ver = 1)
+distritos_wgs84_v1 <- distritos |>
+  sf::st_simplify(dTolerance = 200) |>
+  sf::st_transform(4326)
+
+tenerife_zones_v1 <- zonebuilder::zb_zone("Santa Cruz de Tenerife")
+distritos_tenerife_v1 <- distritos_wgs84_v1[tenerife_zones, ]
+print(distritos_tenerife_v1, n = Inf)

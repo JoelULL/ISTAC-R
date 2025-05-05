@@ -1,0 +1,21 @@
+{
+    "download": {
+      "zones": "muni",
+      "start_date": "2022-01-01",
+      "end_date": "2022-01-02",
+      "type": "od",
+      "param_codes": {
+        "id_origin": ["01059", "02003", "03014"],
+        "id_destination": ["02003", "03014"]
+      }
+    },
+    "postgres": {
+      "pg_dbname": "duckdb_migracion_test",
+      "pg_host": "localhost",
+      "pg_port": 5432,
+      "pg_user": "rusuario",
+      "pg_password": "rpass",
+      "delete_duckdb_file": false
+    }
+  }
+  
