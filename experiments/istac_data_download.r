@@ -196,10 +196,20 @@ distritos_wgs84 <- distritos |>
   sf::st_simplify(dTolerance = 200) |>
   sf::st_transform(4326)
 
-tenerife_zones <- zonebuilder::zb_zone("Canarias")
+tenerife_zones <- zonebuilder::zb_zone("Tenerife")
 distritos_tenerife <- distritos_wgs84[tenerife_zones, ]
 print(distritos_tenerife, n = Inf)
 
+
+id <- as.character(distritos_tenerife$id)
+id
+municipalities <- as.character(distritos_tenerife$municipalities)
+
+id <- unique(unlist(strsplit(as.character(distritos_tenerife$id), "; ")))
+id
+
+municipalities <- unique(unlist(strsplit(as.character(distritos_tenerife$municipalities), "; ")))
+municipalities
 
 
 # version1
@@ -211,3 +221,39 @@ distritos_wgs84_v1 <- distritos |>
 tenerife_zones_v1 <- zonebuilder::zb_zone("Santa Cruz de Tenerife")
 distritos_tenerife_v1 <- distritos_wgs84_v1[tenerife_zones, ]
 print(distritos_tenerife_v1, n = Inf)
+
+
+
+## municipalities
+municipios <- spod_get_zones("municipios", ver = 2)
+municipios_wgs84 <- municipios |>
+  sf::st_simplify(dTolerance = 200) |>
+  sf::st_transform(4326)
+
+tenerife_zones <- zonebuilder::zb_zone("Santa Cruz de Tenerife")
+municipios_tenerife <- municipios_wgs84[tenerife_zones, ]
+print(municipios_tenerife, n = Inf)
+
+##lua
+lua <- spod_get_zones("gau", ver = 2)
+lua_wgs84 <- lua |>
+  sf::st_simplify(dTolerance = 200) |>
+  sf::st_transform(4326)
+
+canary_islands <- c("El Hierro", "La Gomera", "La Palma", "Tenerife", "Gran Canaria", "Lanzarote", "Fuerteventura", "La Graciosa")
+for (island in canary_islands) {
+  tenerife_zones <- zonebuilder::zb_zone(island)
+  lua_tenerife <- lua_wgs84[tenerife_zones, ]
+  #print(lua_tenerife, n = Inf)
+  id <- unique(unlist(strsplit(as.character(lua_tenerife$id), "; ")))
+  print(id)
+}
+
+  tenerife_zones <- zonebuilder::zb_zone("Tenerife")
+  lua_tenerife <- lua_wgs84[tenerife_zones, ]
+  print(lua_tenerife, n = Inf)
+  id <- unique(unlist(strsplit(as.character(lua_tenerife$id), "; ")))
+  print(id)
+
+
+
