@@ -118,15 +118,15 @@ download_data_filtered_v2 <- function(
   )
 }
 
-# in-code test
+# # in-code test
 #  result <- download_data_filtered_v2(
 #    zones = "muni",
 #    start_date = "2022-01-01",
 #    end_date = "2022-01-02",
 #    type = "od",
 #    param_codes = list(
-#      id_origin = c("01059", "02003", "03014"),
-#      id_destination = c("02003", "03014")
+#      id_origin = c("38023", "38022"),
+#      id_destination = c("38023", "38022")
 #    )
 #  )
 #  result
