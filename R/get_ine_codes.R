@@ -3,7 +3,8 @@
 #' 
 #' @description
 #' get the selected zone codes. This can be used to download the specified data
-#' of this zones.
+#' of this zones. WARNING: literal list is unknown yet. Depends of the literal
+#' some codes might be missing!
 #' @param option spod_get_zones params. Allows user to choose between 
 #'  districts, municipalities or luas 
 #' @param zones string vector with the zones names.
