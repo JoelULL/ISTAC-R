@@ -14,10 +14,10 @@
 #' @example
 #' canary_islands <- c("El Hierro", "La Gomera", "La Palma", "Tenerife", 
 #'  "Gran Canaria", "Lanzarote", "Fuerteventura", "La Graciosa")
-#' result <- get_ine_codes("gau", canary_islands, 2)
+#' result <- get_mitma_codes("gau", canary_islands, 2)
 
-get_ine_codes <- function(option, zones, ver) {
-    ine_codes <- c()
+get_mitma_codes <- function(option, zones, ver) {
+    mitma_codes <- c()
 
     zone_codes <- spod_get_zones(option, ver = ver)
     zone_codes_wgs84 <- zone_codes |>
@@ -30,16 +30,16 @@ get_ine_codes <- function(option, zones, ver) {
 
             #id <- unique(unlist(strsplit(as.character(insert_option_zones$id), "; ")))
             id <- unlist(as.character(insert_option_zones$id))
-            ine_codes <- unique(c(ine_codes, id))
+            mitma_codes <- unique(c(mitma_codes, id))
     }
 
-    if (length(ine_codes) == 0) {
+    if (length(mitma_codes) == 0) {
         stop("No id codes availables!\n")
     }
-    ine_codes
+    mitma_codes
 }
 
 ##in-code test
 # canary_islands <- c("El Hierro", "La Gomera", "La Palma", "Tenerife", "Gran Canaria", "Lanzarote", "Fuerteventura", "La Graciosa")
-# result <- get_ine_codes("gau", canary_islands, 2)
+# result <- get_mitma_codes("gau", canary_islands, 2)
 # result
