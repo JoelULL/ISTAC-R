@@ -1,5 +1,4 @@
 spanishoddata/
-.env
 .gitignore
 data/
 experiments/
@@ -11,3 +10,32 @@ ISTAC-R.Rproj
 R/check_ine_codes.R
 docs/examples
 docs/img
+
+####
+/private/
+/data/
+/metadata/
+/datasets/
+
+/project-config.json_files
+*.class
+*.log
+*.lock
+*.pyc
+*.tmp
+
+.env
+.artwork
+
+######################
+# R projects
+.Rhistory
+.Rproj.user
+
+######################
+# Windows
+# Windows image file caches
+Thumbs.db
+######################
+# Mac OSX
+.DS_Store
