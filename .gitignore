@@ -12,7 +12,7 @@ docs/examples
 docs/img
 renv/
 .Rprofile
-
+.RData
 ####
 /private/
 /data/
