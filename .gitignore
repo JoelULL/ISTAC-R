@@ -9,3 +9,5 @@ json_files/
 .Rproj.user/
 ISTAC-R.Rproj
 R/check_ine_codes.R
+docs/examples
+docs/img
