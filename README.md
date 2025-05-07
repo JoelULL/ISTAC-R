@@ -2,7 +2,7 @@
 
 ## Descripción
 
-**MITMA-ISTAC-R** provee funciones para la descarga parametrizada de los datos de movilidad proporcionados por el Ministerio de Transportes y Movilidad Sostenible y su posterior migración a bases de datos PostgreSQL. Se utiliza el paquete R [Spanishoddata](https://github.com/rOpenSpain/spanishoddata) que permite el acceso y la descarga de los datos del Ministerio.
+**MITMA-ISTAC-R** provee funciones para la descarga parametrizada de los datos de movilidad proporcionados por el [Ministerio de Transportes y Movilidad Sostenible](https://www.transportes.gob.es/ministerio/proyectos-singulares/estudios-de-movilidad-con-big-data/opendata-movilidad) y su posterior migración a bases de datos PostgreSQL. Se utiliza el paquete R [Spanishoddata](https://github.com/rOpenSpain/spanishoddata) que permite el acceso y la descarga de los datos del Ministerio.
 
 Para más información acerca del funcionamiento de las funciones del paquete de Spanishoddata se recomienda leer la [documentación asociada](https://ropenspain.github.io/spanishoddata/).
 
@@ -13,23 +13,6 @@ Para más información acerca del funcionamiento de las funciones del paquete de
 | fichero_configuracion.JSON | Fichero con los parámetros descarga y filtrado y la configuración de la base de datos de PostgreSQL receptora. |
 
 
-## Salida
-
-Ficheros de salida o tablas.
-
-| Nombre   | Descripción    |
-| -------- | -------------- |
-| salida-1 | some-text-here |
-| salida-2 | some-text-here |
-
-## Parámetros
-
-| Parámetro   | Descripción    |
-| ----------- | -------------- |
-| parámetro-1 | some-text-here |
-| parámetro-2 | some-text-here |
-
-some-text-here
 
 ## Flujo
 
@@ -81,6 +64,7 @@ A continuación se desglosan las librerías utilizadas y necesarias para el corr
 | tmaptools           | Más reciente           |
 | sf                  | Más reciente           |
 
+El archivo [`develop_packages.R`](/develop_packages.R) incluye todas las librerías usadas e instala aquellas que se necesiten.
 
 ## Observaciones
 
@@ -120,13 +104,13 @@ La descripción y ejemplos de uso de las funciones están incluidas en la docume
 
 En este repositorio se encuentran dos ficheros que incluyen los códigos mitma de los distritos, municipios y Grandes Áreas Urbanas (GAU) disponibles y su relación con los códigos del INE. 
 
-El fichero [`relacion_ine_zonificacionMitma.csv`](/relacion_ine_zonificacionMitma.csv)ha sido descargado de la [web oficial del Ministerio de Transportes y Movilidad Sostenible](https://www.transportes.gob.es/ministerio/proyectos-singulares/estudios-de-movilidad-con-big-data/opendata-movilidad).
+* El fichero [`relacion_ine_zonificacionMitma.csv`](/relacion_ine_zonificacionMitma.csv)ha sido descargado de la [web oficial del Ministerio de Transportes y Movilidad Sostenible](https://www.transportes.gob.es/ministerio/proyectos-singulares/estudios-de-movilidad-con-big-data/opendata-movilidad).
 
-El fichero [`relacion_ine_zonificacionMitma_Canarias.csv`](/relacion_ine_zonificacionMitma_canarias.csv) es una versión modificada del fichero anterior donde simplemente se han almacenado los datos correspondientes a Canarias eliminando el resto para proporcionar una facilidad de acceso a dichos códigos para su uso en futuros análisis y estudio.
+* El fichero [`relacion_ine_zonificacionMitma_Canarias.csv`](/relacion_ine_zonificacionMitma_canarias.csv) es una versión modificada del fichero anterior donde simplemente se han almacenado los datos correspondientes a Canarias eliminando el resto para proporcionar una facilidad de acceso a dichos códigos para su uso en futuros análisis y estudio.
 
 ### Función get_mitma_codes.R
 
-Esta función depende de otra de la librería de Spanishoddata, spod_get_zones(). A fecha de redacción de esta documentación, falta investigar más el funcionamiento y averiguar cuál es la organización de literales que utilizan para organizar el territorio y obtener sus códigos de distritos, municipios y Grandes Áreas Urbanas (GAU).  Por lo tanto no es recomendable su uso hasta que se disponga de más documentación de esta parte ó se haga una actualización de la propia función que mejore el uso de los territorios especificados.
+Esta función depende de otra de la librería de Spanishoddata, spod_get_zones(). A fecha de redacción de esta documentación, falta investigar más el funcionamiento y averiguar cuál es la organización de literales que utilizan para organizar el territorio y obtener sus códigos de distritos, municipios y Grandes Áreas Urbanas (GAU).  Por lo tanto no es recomendable su uso hasta que se disponga de más documentación de esta funcionalidad por parte de Spanishoddata ó se haga una actualización de la propia función que mejore el uso de los territorios especificados.
 
 ## Responsable
 
