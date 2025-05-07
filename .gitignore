@@ -11,6 +11,7 @@ R/check_ine_codes.R
 docs/examples
 docs/img
 renv/
+.Rprofile
 
 ####
 /private/
