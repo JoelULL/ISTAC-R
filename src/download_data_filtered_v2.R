@@ -40,8 +40,8 @@ download_data_filtered_v2 <- function(
     type,
     param_codes,
     os_option = NULL,
-    max_mem_gb = max(4, spod_available_ram() - 4),
-    max_n_cpu = max(1, parallelly::availableCores() - 1),
+    max_mem_gb_user = max(4, spanishoddata:::spod_available_ram() - 4),
+    max_n_cpu_user = max(1, parallelly::availableCores() - 1),
     max_download_size = 1) {
   
   close_orphan_duckdb_process()
@@ -59,7 +59,10 @@ download_data_filtered_v2 <- function(
         type = type,
         zones = zones,
         dates = dates,
-        overwrite = TRUE
+        overwrite = TRUE,
+        max_mem_gb = max_mem_gb_user,
+        max_n_cpu = max_n_cpu_user,
+        max_download_size_gb = max_download_size,
       )
       
       data_db <- spod_connect(db)
