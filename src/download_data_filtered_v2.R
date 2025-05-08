@@ -18,6 +18,12 @@
 #'  More info: https://ropenspain.github.io/spanishoddata/index.html 
 #' @param param_codes list of parameters to filter 
 #'  (e.g. province codes or IDs of other locations.)
+#' @param max_mem_gb_user spanishoddata parameter.
+#'   Amount of RAM memory used.
+#'   Defaults to available RAM minus 4.
+#' @param max_n_cpu_user spanishoddata parameter.
+#'   Number of CPU threads used.
+#'   Defaults to the number of available cores minus 1.
 #' @param max_download_size spanishoddata parameter.
 #'  The maximum download size in gigabytes. Defaults to 1.
 #' @return If success: a list with the status = "success", 
@@ -39,7 +45,6 @@ download_data_filtered_v2 <- function(
     zones, start_date, end_date,
     type,
     param_codes,
-    os_option = NULL,
     max_mem_gb_user = max(4, spanishoddata:::spod_available_ram() - 4),
     max_n_cpu_user = max(1, parallelly::availableCores() - 1),
     max_download_size = 1) {
@@ -135,4 +140,3 @@ download_data_filtered_v2 <- function(
 #    )
 #  )
 #  result
-
