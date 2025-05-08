@@ -40,6 +40,8 @@ download_data_filtered_v2 <- function(
     type,
     param_codes,
     os_option = NULL,
+    max_mem_gb = max(4, spod_available_ram() - 4),
+    max_n_cpu = max(1, parallelly::availableCores() - 1),
     max_download_size = 1) {
   
   close_orphan_duckdb_process()
