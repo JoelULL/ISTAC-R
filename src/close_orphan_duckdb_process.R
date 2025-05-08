@@ -1,5 +1,5 @@
-source("R/close_deleted_duckdb_processes.R")
-source("R/clean_duckdb_tmp_files.R")
+# source("R/close_deleted_duckdb_processes.R")
+# source("R/clean_duckdb_tmp_files.R")
 #' @description
 #' When deleted duckdb processes are detected, both functions
 #' close_deleted_duckdb_processes and clean_duckdb_tmp_files
