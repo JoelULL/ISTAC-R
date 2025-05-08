@@ -115,4 +115,4 @@ Esta función depende de otra de la librería de Spanishoddata, spod_get_zones()
 ## Responsable
 
 * Responsable del desarrollo: _Joel Aday Dorta Hernández_
-* Técnico estadístico responsable: _nombre-completo_
+* Técnico estadístico responsable: _Rafael Betancor Villalba_
